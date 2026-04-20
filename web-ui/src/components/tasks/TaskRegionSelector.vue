@@ -126,7 +126,7 @@ watch(() => props.modelValue, syncFromModel, { immediate: true })
       </Select>
 
       <Select
-        :disabled="!selectedProvince || cityOptions.length === 0"
+        :disabled="!selectedProvince || (cityOptions.length === 0 && selectedProvince !== '全国')"
         :model-value="selectedCity"
         @update:model-value="(value) => handleCityChange(String(value || ''))"
       >
@@ -141,7 +141,7 @@ watch(() => props.modelValue, syncFromModel, { immediate: true })
       </Select>
 
       <Select
-        :disabled="!selectedCity || districtOptions.length === 0"
+        :disabled="!selectedCity || (districtOptions.length === 0 && !isFullOption(selectedCity))"
         :model-value="selectedDistrict"
         @update:model-value="(value) => handleDistrictChange(String(value || ''))"
       >
